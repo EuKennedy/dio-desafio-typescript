@@ -1,0 +1,1 @@
+Desafio prático de introdução ao TypeScript proposto pela DIO.
