@@ -1,0 +1,69 @@
+/* O código abaixo tem alguns erros e não funciona como deveria. Você pode identificar quais são e corrigi-los em um arquivo TS?
+
+let botaoAtualizar = document.getElementById('atualizar-saldo');
+let botaoLimpar = document.getElementById('limpar-saldo');
+let soma = document.getElementById('soma');
+let campoSaldo = document.getElementById('campo-saldo');
+
+campoSaldo.innerHTML = 0
+
+function somarAoSaldo(soma) {
+    campoSaldo.innerHTML += soma;
+}
+
+function limparSaldo() {
+    campoSaldo.innerHTML = '';
+}
+
+botaoAtualizar.addEventListener('click', function () {
+    somarAoSaldo(soma.value);
+});
+
+botaoLimpar.addEventListener('click', function () {
+    limparSaldo();
+});
+*/
+/**
+    <h4>Valor a ser adicionado: <input id="soma"> </h4>
+    <button id="atualizar-saldo">Atualizar saldo</button>
+    <button id="limpar-saldo">Limpar seu saldo</button>
+    <h1>"Seu saldo é: " <span id="campo-saldo"></span></h1>
+ */
+
+let botaoAtualizar: HTMLElement | null = document.getElementById('atualizar-saldo');
+let botaoLimpar: HTMLElement | null = document.getElementById('limpar-saldo');
+let somaInput = document.getElementById('soma') as HTMLInputElement;
+let campoSaldo: HTMLElement | null = document.getElementById('campo-saldo');
+
+if (campoSaldo) {
+    campoSaldo.innerHTML = '0';
+}
+
+function somarAoSaldo(valor: string) {
+
+    let valorNumerico: number = parseInt(valor);
+
+    if (!isNaN(valorNumerico)) {
+
+        let saldoAtual: number = parseInt(campoSaldo!.innerHTML);
+        campoSaldo!.innerHTML = (saldoAtual + valorNumerico).toString();
+
+    } else {
+        alert('Por favor, insira um valor numérico válido.');
+    }
+}
+
+function limparSaldo() {
+
+    campoSaldo!.innerHTML = '0';
+}
+
+if (botaoAtualizar && botaoLimpar && somaInput && campoSaldo) {
+    botaoAtualizar.addEventListener('click', function () {
+        somarAoSaldo(somaInput.value);
+    });
+
+    botaoLimpar.addEventListener('click', function () {
+        limparSaldo();
+    });
+}
